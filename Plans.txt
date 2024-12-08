@@ -1,0 +1,48 @@
+
+### **Basic Features**  
+1. **Add Expenses**:  
+   - Input the date, amount, category (e.g., Food, Travel), and a short description.  
+2. **View Expenses**:  
+   - Display a list of all expenses in a table format.  
+3. **Delete Expenses**:  
+   - Allow users to remove incorrect or unwanted entries.  
+4. **Search/Filter Expenses**:  
+   - Filter expenses by date or category.
+
+---
+
+### **Intermediate Features**  
+1. **Edit Expenses**:  
+   - Modify existing expense entries.  
+2. **Expense Categories**:  
+   - Add, edit, or delete custom categories (e.g., Entertainment, Bills).  
+3. **Monthly/Weekly Summary**:  
+   - Display total expenses for a specific time period.  
+4. **Budget Setting**:  
+   - Set a monthly budget and show warnings if exceeded.  
+
+---
+
+### **Advanced Features** (Optional)  
+1. **Data Export/Import**:  
+   - Export expense data to a CSV file or import expenses from external files.  
+2. **Charts/Graphs**:  
+   - Visualize spending habits using pie charts or bar graphs.  
+3. **Recurring Expenses**:  
+   - Mark certain expenses (e.g., rent, subscriptions) as recurring.  
+4. **Authentication**:  
+   - Add user accounts to track expenses separately.  
+
+---
+
+### **Web Application Features**  
+- Mobile-friendly UI to track expenses on the go.  
+- Notifications or reminders for recurring expenses.  
+- Dashboard summarizing recent activity.  
+
+---
+
+### **Desktop Application Features**  
+- Bulk import/export functionality for managing data offline.  
+- Detailed reporting tools for analyzing spending trends.  
+- Offline capability with database sync when connected to the internet.  
