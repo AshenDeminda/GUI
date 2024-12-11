@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>join</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        html, body {
+            height: 100%;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            background-image: url('Background/1.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+        }
+        .container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;  /* align items to the left */
+            padding: 20px 80px;
+        }
+        .container h1 {
+            font-size: 50px;
+            color: white;
+            margin-top: 10px;
+            text-align: left;
+        }
+        .container h3 {
+            font-size: 20px;
+            color: rgb(0, 0, 0);
+            margin-top: 10px;
+            text-align: left;
+        }
+        .button {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            border: 1px solid transparent;
+            cursor: pointer;
+        }
+        .signup {
+            background-color: #045970;
+            color: #fff;
+            border: none;
+        }
+        .signup:hover {
+            background-color: #034659;
+        }
+        .signin {
+            background-color: #fff;
+            color: #000;
+            border: none;
+        }
+        .signin:hover {
+            background-color: #b5b5b5;
+        }
+        /* --------Footer------------ */
+        footer {
+            width: 100%;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        footer a {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Join Today</h1>
+        <h3>Create an Account</h3>
+        <a href="signup.html" class="button signup">Sign Up</a>
+        <h3>Already have an account?</h3>
+        <a href="signin.html" class="button signin">Sign In</a>
+    </div>
+    <footer>
+        <a href="about.html">About</a>
+        <a href="download.html">Download</a>
+        <a href="helpcenter.html">Help Center</a>
+        <a href="developers.html">Developers</a>
+    </footer>
+</body>
+</html>
