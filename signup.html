@@ -23,15 +23,34 @@
             background-attachment: fixed;
             background-position: center;
         }
-        .signinform {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
+        /* --------Footer------------ */
+        footer {
+            position: fixed; /* Positions the footer like a layer */
+            bottom: 0; /* Places the footer at the bottom of the page */
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            width: 100%;
+            z-index: 10; /* Ensures footer appears above other content */
+        }
+        footer a {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
     
+    <footer>
+        <a href="about.html">About</a>
+        <a href="download.html">Download</a>
+        <a href="helpcenter.html">Help Center</a>
+        <a href="developers.html">Developers</a>
+    </footer>
 </body>
 </html>
