@@ -17,7 +17,7 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
-  padding-top: 30px; /* Prevent navbar overlap */
+  padding-top: 50px; /* Prevent navbar overlap */
 }
 
 .form-card, .summary-card {

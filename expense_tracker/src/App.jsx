@@ -6,9 +6,6 @@ import AddRecord from './Pages/AddRecord';
 import Categories from './Pages/Categories';
 import Reports from './Pages/Reports';
 import Settings from './Pages/Settings';
-import Profile from './Pages/Profile';
-import EditProfile from './Pages/EditProfile';
-import Logout from './Pages/Logout';
 
 import './App.css'; // Main App CSS
 
@@ -22,9 +19,6 @@ function App() {
         <Route path="/categories" element={<Categories />} />
         <Route path="/reports" element={<Reports />} />
         <Route path="/settings" element={<Settings />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/edit-profile" element={<EditProfile />} />
-        <Route path="/logout" element={<Logout />} />
       </Routes>
     </Router>
   );
