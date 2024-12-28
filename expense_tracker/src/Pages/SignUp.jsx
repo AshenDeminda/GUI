@@ -1,24 +1,29 @@
 import React from "react";
-import "./Auth.css";
+import { useNavigate } from "react-router-dom";
+import '../Styles/SignInUp.css';
 
-function SignUp() {
+function SignUp({ onLogin }) {
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Add sign-up logic here
+    // Simulate successful sign-up logic here
     console.log("Sign-Up form submitted");
+    onLogin(); // Update login status
+    navigate("/dashboard"); // Redirect to Dashboard
   };
 
   return (
-    <div className="auth-container">
-      <h2 className="auth-title">Sign Up</h2>
-      <form className="auth-form" onSubmit={handleSubmit}>
-        <input type="text" placeholder="Full Name" className="auth-input" required />
-        <input type="email" placeholder="Email" className="auth-input" required />
-        <input type="password" placeholder="Password" className="auth-input" required />
-        <input type="password" placeholder="Confirm Password" className="auth-input" required />
-        <button type="submit" className="auth-button">Sign Up</button>
+    <div className="form-container">
+      <h2 className="form-title">Sign Up</h2>
+      <form className="form" onSubmit={handleSubmit}>
+        <input type="text" placeholder="Full Name" className="form-input" required />
+        <input type="email" placeholder="Email" className="form-input" required />
+        <input type="password" placeholder="Password" className="form-input" required />
+        <input type="password" placeholder="Confirm Password" className="form-input" required />
+        <button type="submit" className="form-button">Sign Up</button>
       </form>
-      <p className="auth-footer">
+      <p className="form-footer">
         Already have an account? <a href="/signin">Sign In</a>
       </p>
     </div>

@@ -9,7 +9,7 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="nav-content">
         <div className="nav-links">
-          <Link to="/" className={location.pathname === '/' ? 'active' : ''}>Dashboard</Link>
+          <Link to="/dashboard" className={location.pathname === '/dashboard' ? 'active' : ''}>Dashboard</Link>
           <Link to="/add-record" className={location.pathname === '/add-record' ? 'active' : ''}>Add Record</Link>
           <Link to="/categories" className={location.pathname === '/categories' ? 'active' : ''}>Categories</Link>
           <Link to="/reports" className={location.pathname === '/reports' ? 'active' : ''}>Reports</Link>
