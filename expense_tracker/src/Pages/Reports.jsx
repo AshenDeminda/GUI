@@ -20,49 +20,54 @@ function Reports() {
 
   return (
     <div className="reports-container">
-      <h2 className="reports-title">Reports</h2>
+      <div className="left-container">
+        <h2 className="reports-title">Reports</h2>
+        <div className="report-card">
+          {/* Time Period Selector */}
+          <div className="time-period-selector">
+            <label htmlFor="time-period" className="time-period-label">Time Period:</label>
+            <select
+              id="time-period"
+              value={timePeriod}
+              onChange={(e) => setTimePeriod(e.target.value)}
+              className="time-period-select"
+            >
+              <option value="This Month">This Month</option>
+              <option value="Last Month">Last Month</option>
+              <option value="This Year">This Year</option>
+            </select>
+          </div>
 
-      {/* Time Period Selector */}
-      <div className="time-period-selector">
-        <label htmlFor="time-period" className="time-period-label">Time Period:</label>
-        <select
-          id="time-period"
-          value={timePeriod}
-          onChange={(e) => setTimePeriod(e.target.value)}
-          className="time-period-select"
-        >
-          <option value="This Month">This Month</option>
-          <option value="Last Month">Last Month</option>
-          <option value="This Year">This Year</option>
-        </select>
+          {/* Summary Section */}
+          <div className="summary">
+            <div className="summary-item">
+              <h3 className="summary-title">Total Income:</h3>
+              <p className="summary-amount">${totalIncome}</p>
+            </div>
+            <div className="summary-item">
+              <h3 className="summary-title">Total Expenses:</h3>
+              <p className="summary-amount">${totalExpenses}</p>
+            </div>
+            <div className="summary-item">
+              <h3 className="summary-title">Net Balance:</h3>
+              <p className="summary-amount">${netBalance}</p>
+            </div>
+          </div>
+        </div>
       </div>
 
-      {/* Summary Section */}
-      <div className="summary">
-        <div className="summary-item">
-          <h3 className="summary-title">Total Income</h3>
-          <p className="summary-amount">${totalIncome}</p>
-        </div>
-        <div className="summary-item">
-          <h3 className="summary-title">Total Expenses</h3>
-          <p className="summary-amount">${totalExpenses}</p>
-        </div>
-        <div className="summary-item">
-          <h3 className="summary-title">Net Balance</h3>
-          <p className="summary-amount">${netBalance}</p>
-        </div>
-      </div>
-
-      {/* Expense Breakdown */}
-      <div className="breakdown">
+      <div className="right-container">
         <h3 className="breakdown-title">Expense Breakdown by Category</h3>
-        <ul className="breakdown-list">
-          {expenseBreakdown.map((item, index) => (
-            <li key={index} className="breakdown-item">
-              {item.category}: ${item.amount}
-            </li>
-          ))}
-        </ul>
+        <div className="breakdown-card">
+          <ul className="breakdown-list">
+            {expenseBreakdown.map((item, index) => (
+              <li key={index} className="breakdown-item">
+                <span className="breakdown-category">{item.category}</span>
+                <span className="breakdown-amount">${item.amount}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );

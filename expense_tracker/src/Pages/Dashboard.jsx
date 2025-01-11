@@ -37,7 +37,7 @@ const Dashboard = ({ onLogout }) => {
   const categoryData = {
     labels: ['Rent', 'Groceries', 'Dining', 'Transport', 'Entertainment'],
     datasets: [{
-      data: [500, 200, 100, 150, 250],
+      data: [100, 200, 100, 150, 250],
       backgroundColor: ['#2563eb', '#34d399', '#fbbf24', '#f87171', '#a78bfa'],
     }],
   };

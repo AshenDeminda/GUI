@@ -1,11 +1,28 @@
 .reports-container {
+    display: flex;
+    justify-content: space-between;
     padding: 20px;
     font-family: Arial, sans-serif;
   }
   
-  .reports-title {
+  .left-container, .right-container {
+    width: 48%; /* Adjust width to fit two containers side by side */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .report-card, .breakdown-card {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    flex: 1; /* Ensure both containers have the same height */
+  }
+  
+  .reports-title, .breakdown-title {
     font-size: 24px;
     margin-bottom: 20px;
+    text-align: center; /* Center the title */
   }
   
   .time-period-selector {
@@ -24,45 +41,38 @@
   
   .summary {
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
+    flex-direction: column;
+    gap: 10px;
   }
   
   .summary-item {
-    flex: 1;
-    text-align: center;
-    padding: 10px;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-    margin: 0 10px;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: space-between;
+    align-items: center; /* Ensures vertical alignment */
+    padding: 10px;
+    border: 1px solid #ced4da; /* Add border to summary items */
+    border-radius: 4px;
   }
   
   .summary-title {
     font-size: 18px;
-    margin-bottom: 5px;
+    margin: 0; /* Remove any default margins */
+    line-height: 1; /* Ensure consistent line-height */
   }
   
   .summary-amount {
     font-size: 16px;
     font-weight: bold;
-    margin: 0;
-  }
-  
-  .breakdown {
-    margin-top: 20px;
-  }
-  
-  .breakdown-title {
-    font-size: 20px;
-    margin-bottom: 10px;
+    margin: 0; /* Remove any default margins */
+    line-height: 1; /* Ensure consistent line-height */
   }
   
   .breakdown-list {
     list-style: none;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
   }
   
   .breakdown-item {
@@ -70,6 +80,8 @@
     justify-content: space-between;
     font-size: 16px;
     margin-bottom: 5px;
+    width: 100%;
+    padding: 10px 0;
   }
   
   .breakdown-category {
