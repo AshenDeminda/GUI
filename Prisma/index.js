@@ -21,4 +21,28 @@ app.post("/signup", async (req, res) => {
   res.status(200).send({ message: "signup successful" });
 });
 
+app.post("/signin", async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+        const user = await prisma.user.findUnique({ where: { email } });
+
+        if (!user) {
+            return res.status(404).send({ message: "User not found" });
+        }
+
+        // Compare the provided password with the stored password
+        if (user.password !== password) {
+            return res.status(401).send({ message: "Invalid email or password" });
+        }
+
+        // On successful login
+        res.status(200).send({ message: "Sign-in successful", user: { id: user.id, full_name: user.full_name } });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ message: "An error occurred" });
+    }
+});
+
+
 const server = app.listen(3000);
