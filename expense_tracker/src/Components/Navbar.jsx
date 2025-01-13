@@ -11,7 +11,7 @@ const Navbar = () => {
         <div className="nav-links">
           <Link to="/dashboard" className={location.pathname === '/dashboard' ? 'active' : ''}>Dashboard</Link>
           <Link to="/add-record" className={location.pathname === '/add-record' ? 'active' : ''}>Add Record</Link>
-          <Link to="/categories" className={location.pathname === '/categories' ? 'active' : ''}>Categories</Link>
+          {/*<Link to="/categories" className={location.pathname === '/categories' ? 'active' : ''}>Categories</Link>*/}
           <Link to="/reports" className={location.pathname === '/reports' ? 'active' : ''}>Reports</Link>
           <Link to="/settings" className={location.pathname === '/settings' ? 'active' : ''}>Settings</Link>
         </div>
