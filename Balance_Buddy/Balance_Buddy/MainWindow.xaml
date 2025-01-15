@@ -23,6 +23,7 @@
 
             <!-- Main Frame -->
             <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Background="#F4F6F9"/>
+            
         </DockPanel>
     </Grid>
 </Window>
