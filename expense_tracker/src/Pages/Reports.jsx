@@ -1,12 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import '../Styles/Reports.css';
 
 function Reports() {
   const [timePeriod, setTimePeriod] = useState("This Month");
+  const [records, setRecords] = useState([]);
 
-  // Dummy data
-  const totalIncome = 5000;
-  const totalExpenses = 3500;
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch('http://localhost:3000/records');
+      const data = await res.json();
+      setRecords(data);
+    };
+
+    fetchData();
+  }, []);
+
+  const totalIncome = records.filter(record => record.type === 'income').reduce((acc, record) => acc + record.amount, 0);
+  const totalExpenses = records.filter(record => record.type === 'expense').reduce((acc, record) => acc + record.amount, 0);
   const netBalance = totalIncome - totalExpenses;
 
   const expenseBreakdown = [

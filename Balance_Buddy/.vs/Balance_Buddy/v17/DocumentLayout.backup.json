@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\ASUS\\Documents\\GitHub\\GUI\\Balance_Buddy\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{CF8D9134-8274-4664-AC39-89F2AB8B5FB7}|Balance_Buddy\\Balance_Buddy.csproj|c:\\users\\asus\\documents\\github\\gui\\balance_buddy\\balance_buddy\\dashboard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{CF8D9134-8274-4664-AC39-89F2AB8B5FB7}|Balance_Buddy\\Balance_Buddy.csproj|solutionrelative:balance_buddy\\dashboard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{CF8D9134-8274-4664-AC39-89F2AB8B5FB7}|Balance_Buddy\\Balance_Buddy.csproj|c:\\users\\asus\\documents\\github\\gui\\balance_buddy\\balance_buddy\\addrecord.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{CF8D9134-8274-4664-AC39-89F2AB8B5FB7}|Balance_Buddy\\Balance_Buddy.csproj|solutionrelative:balance_buddy\\addrecord.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
@@ -29,10 +33,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{CF8D9134-8274-4664-AC39-89F2AB8B5FB7}|Balance_Buddy\\Balance_Buddy.csproj|c:\\users\\asus\\documents\\github\\gui\\balance_buddy\\balance_buddy\\reports.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{CF8D9134-8274-4664-AC39-89F2AB8B5FB7}|Balance_Buddy\\Balance_Buddy.csproj|solutionrelative:balance_buddy\\reports.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CF8D9134-8274-4664-AC39-89F2AB8B5FB7}|Balance_Buddy\\Balance_Buddy.csproj|c:\\users\\asus\\documents\\github\\gui\\balance_buddy\\balance_buddy\\dashboard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{CF8D9134-8274-4664-AC39-89F2AB8B5FB7}|Balance_Buddy\\Balance_Buddy.csproj|solutionrelative:balance_buddy\\dashboard.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,11 +42,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "AddRecord.xaml.cs",
               "DocumentMoniker": "C:\\Users\\ASUS\\Documents\\GitHub\\GUI\\Balance_Buddy\\Balance_Buddy\\AddRecord.xaml.cs",
               "RelativeDocumentMoniker": "Balance_Buddy\\AddRecord.xaml.cs",
@@ -54,12 +54,11 @@
               "RelativeToolTip": "Balance_Buddy\\AddRecord.xaml.cs",
               "ViewState": "AgIAAEQAAAAAAAAAAAAcwFYAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-15T16:04:14.516Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-15T16:04:14.516Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "App.xaml",
               "DocumentMoniker": "C:\\Users\\ASUS\\Documents\\GitHub\\GUI\\Balance_Buddy\\Balance_Buddy\\App.xaml",
               "RelativeDocumentMoniker": "Balance_Buddy\\App.xaml",
@@ -71,7 +70,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Settings.xaml",
               "DocumentMoniker": "C:\\Users\\ASUS\\Documents\\GitHub\\GUI\\Balance_Buddy\\Balance_Buddy\\Settings.xaml",
               "RelativeDocumentMoniker": "Balance_Buddy\\Settings.xaml",
@@ -82,7 +81,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Reports.xaml",
               "DocumentMoniker": "C:\\Users\\ASUS\\Documents\\GitHub\\GUI\\Balance_Buddy\\Balance_Buddy\\Reports.xaml",
               "RelativeDocumentMoniker": "Balance_Buddy\\Reports.xaml",
@@ -93,7 +92,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "AddRecord.xaml",
               "DocumentMoniker": "C:\\Users\\ASUS\\Documents\\GitHub\\GUI\\Balance_Buddy\\Balance_Buddy\\AddRecord.xaml",
               "RelativeDocumentMoniker": "Balance_Buddy\\AddRecord.xaml",
@@ -105,30 +104,30 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 0,
               "Title": "Dashboard.xaml",
               "DocumentMoniker": "C:\\Users\\ASUS\\Documents\\GitHub\\GUI\\Balance_Buddy\\Balance_Buddy\\Dashboard.xaml",
               "RelativeDocumentMoniker": "Balance_Buddy\\Dashboard.xaml",
               "ToolTip": "C:\\Users\\ASUS\\Documents\\GitHub\\GUI\\Balance_Buddy\\Balance_Buddy\\Dashboard.xaml",
               "RelativeToolTip": "Balance_Buddy\\Dashboard.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-01-15T14:33:48.243Z"
+              "WhenOpened": "2025-01-15T14:33:48.243Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\ASUS\\Documents\\GitHub\\GUI\\Balance_Buddy\\Balance_Buddy\\MainWindow.xaml",
               "RelativeDocumentMoniker": "Balance_Buddy\\MainWindow.xaml",
               "ToolTip": "C:\\Users\\ASUS\\Documents\\GitHub\\GUI\\Balance_Buddy\\Balance_Buddy\\MainWindow.xaml",
               "RelativeToolTip": "Balance_Buddy\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-01-15T14:11:36.068Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-15T14:11:36.068Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\ASUS\\Documents\\GitHub\\GUI\\Balance_Buddy\\Balance_Buddy\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "Balance_Buddy\\MainWindow.xaml.cs",

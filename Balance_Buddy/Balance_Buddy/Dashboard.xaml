@@ -9,11 +9,54 @@
       Title="Dashboard">
 
     <Grid>
-        <StackPanel Margin="20">
-            <TextBlock Text="Balance Buddy" FontSize="30" FontWeight="Bold" Margin="0,0,0,20"/>
-            <TextBlock Text="Monthly Income: $2,500.00" FontSize="16" Margin="0,0,0,10"/>
-            <TextBlock Text="Monthly Expenses: $1,750.00" FontSize="16" Margin="0,0,0,10"/>
-            <TextBlock Text="Total Balance: $3,250.00" FontSize="16" Margin="0,0,0,10"/>
+        <!-- Main layout grid with two columns -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Left Side: User details and profile picture -->
+        <StackPanel Grid.Column="0" Margin="20" VerticalAlignment="Top" HorizontalAlignment="Left">
+            <Border Background="#007BFF" CornerRadius="10" Padding="20" Width="250" Height="350">
+                <!-- User Info -->
+                <StackPanel VerticalAlignment="Top">
+                    <!-- Circular user picture -->
+                    <Ellipse Width="80" Height="80" Fill="#FFFFFF" HorizontalAlignment="Center">
+                        <Ellipse.Stroke>
+                            <SolidColorBrush Color="#007BFF" />
+                        </Ellipse.Stroke>
+                    </Ellipse>
+                    <TextBlock Text="John Doe" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Margin="0, 20, 0, 10" Foreground="#FFFFFF"/>
+                    <TextBlock Text="Email: johndoe@example.com" FontSize="14" HorizontalAlignment="Center" Foreground="#FFFFFF"/>
+                </StackPanel>
+            </Border>
         </StackPanel>
+
+        <!-- Right Side: Financial Information -->
+        <StackPanel Grid.Column="1" Margin="20" VerticalAlignment="Top" HorizontalAlignment="Left">
+            <StackPanel Margin="0, 0, 0, 20">
+                <TextBlock Text="Financial Overview" FontSize="24" FontWeight="Bold" Margin="0,0,0,20"/>
+                <Border Background="#F1F1F1" CornerRadius="10" Padding="20">
+                    <StackPanel>
+                        <!-- Monthly Income -->
+                        <StackPanel Margin="0, 0, 0, 10">
+                            <TextBlock Text="Monthly Income" FontSize="16" FontWeight="SemiBold"/>
+                            <TextBlock Text="$2,500.00" FontSize="20" Foreground="#007BFF"/>
+                        </StackPanel>
+                        <!-- Monthly Expenses -->
+                        <StackPanel Margin="0, 0, 0, 10">
+                            <TextBlock Text="Monthly Expenses" FontSize="16" FontWeight="SemiBold"/>
+                            <TextBlock Text="$1,750.00" FontSize="20" Foreground="#FF5733"/>
+                        </StackPanel>
+                        <!-- Total Balance -->
+                        <StackPanel Margin="0, 0, 0, 10">
+                            <TextBlock Text="Total Balance" FontSize="16" FontWeight="SemiBold"/>
+                            <TextBlock Text="$3,250.00" FontSize="20" Foreground="#28A745"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </StackPanel>
+
     </Grid>
 </Page>
