@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
-import '../Styles/Settings.css';
+import React, { useState, useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "../Styles/Settings.css";
 
 const Settings = () => {
   const [userData, setUserData] = useState({
-    name: "John Doe",
-    email: "john.doe@example.com",
+    id: "",
+    name: "",
+    email: "",
     currentPassword: "",
     newPassword: "",
     confirmNewPassword: "",
@@ -13,44 +16,139 @@ const Settings = () => {
     deleteAccountPassword: "",
   });
 
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        toast.error("You are not logged in");
+        return;
+      }
+
+      try {
+        const res = await fetch("http://localhost:3000/user", {
+          method: "GET",
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
+        if (!res.ok) throw new Error("Failed to fetch user data");
+
+        const data = await res.json();
+
+        setUserData((prevData) => ({
+          ...prevData,
+          id: data.id,
+          name: data.full_name,
+          email: data.email,
+          currency: data.currency,
+          currencyFormat: data.currencyFormat,
+        }));
+      } catch (err) {
+        toast.error("Failed to fetch user data");
+      }
+    };
+
+    fetchUserData();
+  }, []);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setUserData({ ...userData, [name]: value });
   };
 
-  const handlePasswordChange = () => {
+  const updateProfile = async () => {
+    const token = localStorage.getItem("token");
+    try {
+      const res = await fetch("http://localhost:3000/settings/update-profile", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          id: userData.id,
+          name: userData.name,
+          email: userData.email,
+        }),
+      });
+      if (res.ok) toast.success("Profile updated successfully");
+      else toast.error("Failed to update profile");
+    } catch {
+      toast.error("An error occurred");
+    }
+  };
+
+  const changePassword = async () => {
     if (userData.newPassword !== userData.confirmNewPassword) {
-      alert("New passwords do not match.");
+      toast.error("New passwords do not match");
       return;
     }
-    // Add logic for password change
-    console.log("Password changed successfully.");
-  };
-
-  const handleLogout = () => {
-    const confirmation = window.confirm("Are you sure you want to log out?");
-    if (confirmation) {
-      // Add logout logic here
-      console.log("Logged out successfully.");
+    const token = localStorage.getItem("token");
+    try {
+      const res = await fetch("http://localhost:3000/settings/change-password", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          id: userData.id,
+          currentPassword: userData.currentPassword,
+          newPassword: userData.newPassword,
+        }),
+      });
+      if (res.ok) toast.success("Password updated successfully");
+      else toast.error("Incorrect current password");
+    } catch {
+      toast.error("An error occurred");
     }
   };
 
-  const handleDeleteAccount = () => {
-    if (!userData.deleteAccountPassword) {
-      alert("Please enter your password to delete your account.");
-      return;
+  const updateCurrency = async () => {
+    const token = localStorage.getItem("token");
+    try {
+      const res = await fetch("http://localhost:3000/settings/update-currency", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          id: userData.id,
+          currency: userData.currency,
+          currencyFormat: userData.currencyFormat,
+        }),
+      });
+      if (res.ok) toast.success("Currency updated successfully");
+      else toast.error("Failed to update currency settings");
+    } catch {
+      toast.error("An error occurred");
     }
-    const confirmation = window.confirm(
-      "Are you sure you want to delete your account? This action cannot be undone."
-    );
-    if (confirmation) {
-      // Add account deletion logic here
-      console.log("Account deleted successfully.");
+  };
+
+  const deleteAccount = async () => {
+    const token = localStorage.getItem("token");
+    try {
+      const res = await fetch("http://localhost:3000/settings/delete-account", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          id: userData.id,
+          password: userData.deleteAccountPassword,
+        }),
+      });
+      if (res.ok) toast.success("Account deleted successfully");
+      else toast.error("Incorrect password");
+    } catch {
+      toast.error("An error occurred");
     }
   };
 
   return (
     <div className="settings-container">
+      <ToastContainer />
       <h1 className="settings-title">Settings</h1>
 
       {/* Profile Settings */}
@@ -65,11 +163,7 @@ const Settings = () => {
             <label>Email</label>
             <input type="email" name="email" value={userData.email} onChange={handleInputChange} />
           </div>
-          <div className="form-group">
-            <label>Profile Picture (optional)</label>
-            <input type="file" name="profilePicture" />
-          </div>
-          <button className="btn" onClick={handleLogout}>Logout</button>
+          <button className="btn" onClick={updateProfile}>Update Profile</button>
         </div>
       </section>
 
@@ -104,7 +198,7 @@ const Settings = () => {
               onChange={handleInputChange}
             />
           </div>
-          <button className="btn" onClick={handlePasswordChange}>Change Password</button>
+          <button className="btn" onClick={changePassword}>Change Password</button>
         </div>
       </section>
 
@@ -126,6 +220,7 @@ const Settings = () => {
               <option value="රු">රු</option>
             </select>
           </div>
+          <button className="btn" onClick={updateCurrency}>Update Currency</button>
         </div>
       </section>
 
@@ -142,18 +237,9 @@ const Settings = () => {
               onChange={handleInputChange}
             />
           </div>
-          <button className="btn btn-danger" onClick={handleDeleteAccount}>
+          <button className="btn btn-danger" onClick={deleteAccount}>
             Delete Account
           </button>
-        </div>
-      </section>
-
-      {/* Help and Support */}
-      <section className="settings-section">
-        <h2 className="section-title">Help and Support</h2>
-        <div className="section-content">
-          <a href="/faq" className="link">FAQ Section</a>
-          <a href="/contact-support" className="link">Contact Support</a>
         </div>
       </section>
     </div>
