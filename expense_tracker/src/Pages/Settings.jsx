@@ -23,11 +23,13 @@ const Settings = () => {
         toast.error("You are not logged in");
         return;
       }
+      const data = JSON.parse(token)
+      const user = data.user.id;
 
       try {
         const res = await fetch("http://localhost:3000/user", {
           method: "GET",
-          headers: { Authorization: `Bearer ${token}` },
+          headers: { Authorization: `Bearer ${user}` },
         });
 
         if (!res.ok) throw new Error("Failed to fetch user data");

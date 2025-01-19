@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../Styles/AddRecord.css';
+import auth from '../auth';
 
 const AddRecord = () => {
   const [transaction, setTransaction] = useState({
@@ -16,11 +17,27 @@ const AddRecord = () => {
     setTransaction({ ...transaction, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newRecord = { ...transaction, date: new Date().toLocaleDateString() };
+    const { customCategory, ...reqdata} = transaction;
+    if (reqdata.category == 'other') {
+      reqdata.category = customCategory;
+    }
+    reqdata.userId = auth.load().id
+    reqdata.amount = Number(reqdata.amount);
+
+    const res = await fetch('http://localhost:3000/transaction', {method:"POST", body:JSON.stringify(reqdata), headers:{"Content-Type":"application/json"}})
+
+    if (res.ok) {
+      alert('ok bro')
+    } else {
+      alert('not ok bro')
+    }
+
     setRecords([...records, newRecord]);
     setTransaction({ type: 'expense', category: '', customCategory: '', description: '', amount: '' });
+
   };
 
   const totalIncome = records
@@ -50,6 +67,8 @@ const AddRecord = () => {
     { category: 'Income', amount: totalIncome },
     { category: 'Expense', amount: totalExpense }
   ] : getCategoryData(filter);
+
+
 
   return (
     <div className="container">
@@ -101,7 +120,7 @@ const AddRecord = () => {
             </select>
           </div>
 
-          {transaction.category === 'other' && (
+          {/* {transaction.category === 'other' && (
             <div className="form-group">
               <label htmlFor="customCategory">Custom Category</label>
               <input
@@ -114,7 +133,7 @@ const AddRecord = () => {
                 required
               />
             </div>
-          )}
+          )} */}
 
           <div className="form-group">
             <label htmlFor="description">Description</label>

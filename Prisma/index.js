@@ -1,12 +1,13 @@
 import express from "express";
-import cors from "cors";
+import cors from 'cors';
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 const app = express();
+app.use(cors());
 
 app.use(express.json());
-app.use(cors({ origin: "http://localhost:5173" }));
+//app.use(cors({ origin: "http://localhost:5173" }));
 
 app.post("/signup", async (req, res) => {
     try {
@@ -36,6 +37,7 @@ app.post("/signin", async (req, res) => {
 
 app.get("/user", async (req, res) => {
     const token = req.headers.authorization?.split(" ")[1];
+    console.log(`token: ${token}`);
     // Mocked token for demonstration. Replace with actual authentication logic.
     if (!token) return res.status(401).send({ message: "Unauthorized" });
 
@@ -44,6 +46,7 @@ app.get("/user", async (req, res) => {
         if (!user) return res.status(404).send({ message: "User not found" });
         res.status(200).send(user);
     } catch (error) {
+        console.error(error);
         res.status(500).send({ message: "Failed to fetch user data" });
     }
 });
@@ -106,6 +109,27 @@ app.delete("/settings/delete-account", async (req, res) => {
         res.status(500).send({ message: "Failed to delete account" });
     }
 });
+
+app.post("/transaction", async(req, res) => {
+    try {
+        const transaction = await prisma.transaction.create({ data: req.body });
+        res.status(200).send(transaction);
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({ message: "Failed to add transaction" });
+    }
+})
+
+app.get("/transaction", async (req, res) => {
+    let {user} = req.query;
+    user = Number(user);
+    if (isNaN(user)) {
+        res.status(400).send({mesasge: "invalid user id"});
+    } else {
+        const transactions = await prisma.transaction.findMany({where:{userId:user}})
+        res.json(transactions);
+    }
+})
 
 app.listen(3000, () => {
     console.log("Server is running on http://localhost:3000");

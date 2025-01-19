@@ -10,9 +10,11 @@ import SignIn from './Pages/SignIn';
 import SignUp from './Pages/SignUp';
 
 import './App.css';
+import auth from './auth';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const [isLoggedIn, setIsLoggedIn] = useState(Boolean(auth.load()));
 
   const handleLogin = () => {
     setIsLoggedIn(true);

@@ -29,6 +29,7 @@ function SignIn({ onLogin }) {
 
     if (res.ok) {
       const data = await res.json();
+      localStorage.setItem("token", JSON.stringify(data)); // Store token in localStorage
       toast.success("Sign-in successful!");
       onLogin(); // Trigger any additional login behavior
       navigate("/dashboard"); // Navigate to the dashboard
