@@ -18,6 +18,9 @@ model User {
   currency       String @default("USD")
   currencyFormat String @default("$")
   transactions   Transaction[]
+  location String?
+  job      String?
+  age      Int?
 }
 
 model Transaction {

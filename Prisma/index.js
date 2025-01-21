@@ -5,9 +5,7 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 const app = express();
 app.use(cors());
-
 app.use(express.json());
-//app.use(cors({ origin: "http://localhost:5173" }));
 
 app.post("/signup", async (req, res) => {
     try {
@@ -38,7 +36,6 @@ app.post("/signin", async (req, res) => {
 app.get("/user", async (req, res) => {
     const token = req.headers.authorization?.split(" ")[1];
     console.log(`token: ${token}`);
-    // Mocked token for demonstration. Replace with actual authentication logic.
     if (!token) return res.status(401).send({ message: "Unauthorized" });
 
     try {
@@ -52,16 +49,16 @@ app.get("/user", async (req, res) => {
 });
 
 app.put("/settings/update-profile", async (req, res) => {
-    console.log(req.body); // Log the incoming request
-    const { id, name, email } = req.body;
+    console.log(req.body);
+    const { id, name, email, location, job, age } = req.body;
     try {
         const user = await prisma.user.update({
             where: { id: Number(id) },
-            data: { full_name: name, email },
+            data: { full_name: name, email, location, job, age: parseInt(age, 10) },
         });
         res.status(200).send({ message: "Profile updated", user });
     } catch (error) {
-        console.error(error); // Log the error
+        console.error(error);
         res.status(500).send({ message: "Failed to update profile" });
     }
 });
