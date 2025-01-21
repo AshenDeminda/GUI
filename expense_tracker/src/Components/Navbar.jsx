@@ -1,13 +1,17 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import '../Styles/Navbar.css'; // Navbar specific CSS
 
-const Navbar = () => {
+const Navbar = ({ onLogout }) => {
   const location = useLocation();
-
+  const navigate = useNavigate();
+  
   const handleLogout = () => {
-    console.log("User logged out"); // Placeholder for logout logic
-    // Implement your logout functionality here (e.g., clearing tokens, redirecting to login, etc.)
+    const confirmLogout = window.confirm("Are you sure you want to log out?");
+    if (confirmLogout) {
+      onLogout(); // Execute the logout logic passed down as props
+      navigate('/signin'); // Redirect to sign-in page
+    }
   };
 
   return (

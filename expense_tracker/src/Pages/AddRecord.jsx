@@ -30,9 +30,9 @@ const AddRecord = () => {
     const res = await fetch('http://localhost:3000/transaction', {method:"POST", body:JSON.stringify(reqdata), headers:{"Content-Type":"application/json"}})
 
     if (res.ok) {
-      alert('ok bro')
+      alert('Transaction added successfully!');
     } else {
-      alert('not ok bro')
+      alert('Failed to add transaction. Please try again.');
     }
 
     setRecords([...records, newRecord]);

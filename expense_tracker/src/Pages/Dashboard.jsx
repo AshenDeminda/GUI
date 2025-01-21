@@ -16,7 +16,7 @@ ChartJS.register(
   Legend
 );
 
-const Dashboard = ({ onLogout }) => {
+const Dashboard = ({ }) => {
   const userData = {
     name: "John Doe",
     email: "john.doe@example.com",

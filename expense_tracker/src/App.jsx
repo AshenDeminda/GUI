@@ -8,13 +8,12 @@ import Reports from './Pages/Reports';
 import Settings from './Pages/Settings';
 import SignIn from './Pages/SignIn';
 import SignUp from './Pages/SignUp';
+import Navbar from './Components/Navbar'; // Import Navbar component
 
 import './App.css';
-import auth from './auth';
 import Footer from './Components/Footer';
 
 function App() {
-
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleLogin = () => {
@@ -28,6 +27,7 @@ function App() {
   return (
     <Router>
       <Layout>
+        {isLoggedIn && <Navbar onLogout={handleLogout} />} {/* Include Navbar if logged in */}
         <Routes>
           <Route path="/" element={isLoggedIn ? <Navigate to="/dashboard" /> : <SignUp onLogin={handleLogin} />} />
           <Route path="/dashboard" element={isLoggedIn ? <Dashboard onLogout={handleLogout} /> : <Navigate to="/signin" />} />
