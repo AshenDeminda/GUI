@@ -62,3 +62,24 @@
 body {
   padding-top: 80px; /* Adjust based on the height of your navbar */
 }
+
+.logout-button {
+  background-color: #2563eb; /* Red color for logout */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-left: 15px; /* Spacing between avatar and button */
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #dc2626; /* Darker red on hover */
+}
+
+.logout-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.4); /* Focus state for accessibility */
+}
