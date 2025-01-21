@@ -11,6 +11,7 @@ import SignUp from './Pages/SignUp';
 
 import './App.css';
 import auth from './auth';
+import Footer from './Components/Footer';
 
 function App() {
 
@@ -38,6 +39,7 @@ function App() {
           <Route path="/signup" element={isLoggedIn ? <Navigate to="/dashboard" /> : <SignUp onLogin={handleLogin} />} />
         </Routes>
       </Layout>
+      <Footer />
     </Router>
   );
 }
