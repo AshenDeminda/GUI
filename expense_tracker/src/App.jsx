@@ -14,7 +14,7 @@ import auth from './auth';
 
 function App() {
 
-  const [isLoggedIn, setIsLoggedIn] = useState(Boolean(auth.load()));
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleLogin = () => {
     setIsLoggedIn(true);

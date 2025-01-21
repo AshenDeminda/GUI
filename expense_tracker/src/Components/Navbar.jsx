@@ -22,7 +22,7 @@ const Navbar = () => {
         <div className="user-profile">
           <span className="user-name">John Doe</span>
           <span className="user-email">john.doe@example.com</span>
-          <img src="/path/to/user/avatar.jpg" alt="User Avatar" className="user-avatar" />
+          <img src="/public/ProfilPic.jpg" alt="User Avatar" className="user-avatar" />
           <button className="logout-button" onClick={handleLogout}>Logout</button>
         </div>
       </div>

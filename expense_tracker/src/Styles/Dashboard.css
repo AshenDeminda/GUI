@@ -43,10 +43,13 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 1rem;
+  background-image: url('/public/ProfilPic.jpg');
+  background-size: cover;
+  background-position: center;
 }
 
 .profile-icon {
-  color: #2563eb;
+  display: none; /* Hide the icon since we are using an image */
 }
 
 .profile-name {
