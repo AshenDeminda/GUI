@@ -3,12 +3,84 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Balance_Buddy"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Reports">
+      Title="Reports"
+      Background="#F4F6F9">
 
-    <Grid>
-        <TextBlock Text="Reports Page" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Time Period Section -->
+        <Border Background="White" CornerRadius="10" Padding="20" Grid.Row="0">
+            <StackPanel>
+                <TextBlock Text="Time Period:" FontSize="20" FontWeight="Bold" Margin="0,0,0,10" Foreground="#2B2D42"/>
+                <TextBlock Text="This Month" FontSize="16" FontWeight="Bold" Margin="0,0,0,10" Foreground="#2B2D42"/>
+
+                <!-- Total Income -->
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBlock Text="Total Income:" FontWeight="Bold" Width="150"/>
+                    <TextBlock x:Name="TotalIncomeText" Text="$0" Foreground="Green"/>
+                </StackPanel>
+
+                <!-- Total Expenses -->
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBlock Text="Total Expenses:" FontWeight="Bold" Width="150"/>
+                    <TextBlock x:Name="TotalExpensesText" Text="$0" Foreground="Red"/>
+                </StackPanel>
+
+                <!-- Net Balance -->
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBlock Text="Net Balance:" FontWeight="Bold" Width="150"/>
+                    <TextBlock x:Name="NetBalanceText" Text="$0" Foreground="#2563EB"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <!-- Expense Breakdown by Category Section -->
+        <Border Background="White" CornerRadius="10" Padding="20" Grid.Row="1" Margin="0,20,0,0">
+            <StackPanel>
+                <TextBlock Text="Expense Breakdown by Category" FontSize="20" FontWeight="Bold" Margin="0,0,0,10" Foreground="#2B2D42"/>
+
+                <!-- Rent -->
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBlock Text="Rent" FontWeight="Bold" Width="150"/>
+                    <TextBlock x:Name="RentText" Text="$1500" Foreground="#2B2D42"/>
+                </StackPanel>
+
+                <!-- Groceries -->
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBlock Text="Groceries" FontWeight="Bold" Width="150"/>
+                    <TextBlock x:Name="GroceriesText" Text="$800" Foreground="#2B2D42"/>
+                </StackPanel>
+
+                <!-- Dining -->
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBlock Text="Dining" FontWeight="Bold" Width="150"/>
+                    <TextBlock x:Name="DiningText" Text="$400" Foreground="#2B2D42"/>
+                </StackPanel>
+
+                <!-- Transport -->
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBlock Text="Transport" FontWeight="Bold" Width="150"/>
+                    <TextBlock x:Name="TransportText" Text="$800" Foreground="#2B2D42"/>
+                </StackPanel>
+
+                <!-- Entertainment -->
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBlock Text="Entertainment" FontWeight="Bold" Width="150"/>
+                    <TextBlock x:Name="EntertainmentText" Text="$400" Foreground="#2B2D42"/>
+                </StackPanel>
+
+                <!-- Other -->
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBlock Text="Other" FontWeight="Bold" Width="150"/>
+                    <TextBlock x:Name="OtherText" Text="$200" Foreground="#2B2D42"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
     </Grid>
 </Page>
