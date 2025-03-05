@@ -5,8 +5,8 @@
         Background="#F4F6F9">
     <Grid>
         <DockPanel>
-            <!-- Navigation Bar -->
-            <StackPanel DockPanel.Dock="Top" Background="#1E90FF" Orientation="Horizontal" Height="60">
+            <!-- Navigation Bar (Initially Hidden) -->
+            <StackPanel x:Name="NavigationBar" DockPanel.Dock="Top" Background="#1E90FF" Orientation="Horizontal" Height="60" Visibility="Collapsed">
                 <Button Content="Dashboard" Width="100" Height="40" Margin="10,10,0,10" 
                         Background="#4682B4" Foreground="White" FontWeight="Bold" BorderThickness="0"
                         Cursor="Hand" Click="NavigateDashboard_Click"/>
@@ -23,7 +23,6 @@
 
             <!-- Main Frame -->
             <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Background="#F4F6F9"/>
-            
         </DockPanel>
     </Grid>
 </Window>

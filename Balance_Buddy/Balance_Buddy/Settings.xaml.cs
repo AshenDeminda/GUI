@@ -24,5 +24,10 @@ namespace Balance_Buddy
         {
             InitializeComponent();
         }
+
+        private void LocationTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

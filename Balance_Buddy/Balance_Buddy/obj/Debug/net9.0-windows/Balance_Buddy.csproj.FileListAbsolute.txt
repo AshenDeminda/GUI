@@ -35,3 +35,5 @@ C:\Users\ASUS\Documents\GitHub\GUI\Balance_Buddy\Balance_Buddy\obj\Debug\net9.0-
 C:\Users\ASUS\Documents\GitHub\GUI\Balance_Buddy\Balance_Buddy\obj\Debug\net9.0-windows\Settings.baml
 C:\Users\ASUS\Documents\GitHub\GUI\Balance_Buddy\Balance_Buddy\obj\Debug\net9.0-windows\Balance_.29BDD3BB.Up2Date
 C:\Users\ASUS\Documents\GitHub\GUI\Balance_Buddy\Balance_Buddy\obj\Debug\net9.0-windows\App.baml
+C:\Users\ASUS\Documents\GitHub\GUI\Balance_Buddy\Balance_Buddy\obj\Debug\net9.0-windows\Login.baml
+C:\Users\ASUS\Documents\GitHub\GUI\Balance_Buddy\Balance_Buddy\obj\Debug\net9.0-windows\Login.g.cs

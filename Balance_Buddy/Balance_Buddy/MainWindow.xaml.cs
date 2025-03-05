@@ -20,24 +20,32 @@ namespace Balance_Buddy
         public MainWindow()
         {
             InitializeComponent();
+
+            // Start with login page
+            MainFrame.Navigate(new Login(this));
         }
 
-        private void NavigateDashboard_Click(object sender, RoutedEventArgs e)
+        public void ShowNavigationBar()
+        {
+            NavigationBar.Visibility = Visibility.Visible;
+        }
+
+        public void NavigateDashboard_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new Dashboard());
         }
 
-        private void NavigateAddRecord_Click(object sender, RoutedEventArgs e)
+        public void NavigateAddRecord_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new AddRecord());
         }
 
-        private void NavigateReports_Click(object sender, RoutedEventArgs e)
+        public void NavigateReports_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new Reports());
         }
 
-        private void NavigateSettings_Click(object sender, RoutedEventArgs e)
+        public void NavigateSettings_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new Settings());
         }

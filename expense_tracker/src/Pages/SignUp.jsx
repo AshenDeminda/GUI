@@ -15,6 +15,12 @@ function SignUp({ onLogin }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (password !== confirmPassword) {
+      toast.error("Passwords do not match");
+      return;
+    }
+    
     console.log("Sign-Up form submitted");
     const res = await fetch("http://localhost:3000/signup", {method: "POST", body:JSON.stringify({full_name, email, password}), headers:{"Content-Type":"application/json"}});
     if (res.ok) {

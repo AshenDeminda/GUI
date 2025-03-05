@@ -1,16 +1,38 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import '../Styles/Navbar.css'; // Navbar specific CSS
+import '../Styles/Navbar.css';
+import auth from '../auth';
+import axios from 'axios';
 
 const Navbar = ({ onLogout }) => {
   const location = useLocation();
   const navigate = useNavigate();
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const token = localStorage.getItem("token");
+      if (token) {
+        try {
+          const parsedToken = JSON.parse(token);
+          const res = await axios.get("http://localhost:3000/user", {
+            headers: { Authorization: `Bearer ${parsedToken.user.id}` },
+          });
+          setUserData(res.data);
+        } catch (err) {
+          console.error("Failed to fetch user data", err);
+        }
+      }
+    };
+
+    fetchUserData();
+  }, []);
   
   const handleLogout = () => {
     const confirmLogout = window.confirm("Are you sure you want to log out?");
     if (confirmLogout) {
-      onLogout(); // Execute the logout logic passed down as props
-      navigate('/signin'); // Redirect to sign-in page
+      onLogout();
+      navigate('/signin');
     }
   };
 
@@ -24,8 +46,8 @@ const Navbar = ({ onLogout }) => {
           <Link to="/settings" className={location.pathname === '/settings' ? 'active' : ''}>Settings</Link>
         </div>
         <div className="user-profile">
-          <span className="user-name">John Doe</span>
-          <span className="user-email">john.doe@example.com</span>
+          <span className="user-name">{userData?.full_name || 'User'}</span>
+          <span className="user-email">{userData?.email || 'user@example.com'}</span>
           <img src="/public/ProfilPic.jpg" alt="User Avatar" className="user-avatar" />
           <button className="logout-button" onClick={handleLogout}>Logout</button>
         </div>

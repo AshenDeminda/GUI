@@ -18,7 +18,7 @@
 
         <!-- Left Side: User details and profile picture -->
         <StackPanel Grid.Column="0" Margin="20" VerticalAlignment="Top" HorizontalAlignment="Left">
-            <Border Background="#007BFF" CornerRadius="10" Padding="20" Width="250" Height="350">
+            <Border Background="#007BFF" CornerRadius="10" Padding="20" Width="265" Height="552">
                 <!-- User Info -->
                 <StackPanel VerticalAlignment="Top">
                     <!-- Circular user picture -->
@@ -37,7 +37,7 @@
         <StackPanel Grid.Column="1" Margin="20" VerticalAlignment="Top" HorizontalAlignment="Left">
             <StackPanel Margin="0, 0, 0, 20">
                 <TextBlock Text="Financial Overview" FontSize="24" FontWeight="Bold" Margin="0,0,0,20"/>
-                <Border Background="#F1F1F1" CornerRadius="10" Padding="20" Width="500">
+                <Border Background="#F1F1F1" CornerRadius="10" Padding="20" Width="500" Height="208">
                     <StackPanel>
                         <!-- Monthly Income -->
                         <StackPanel Margin="0, 0, 0, 10">
