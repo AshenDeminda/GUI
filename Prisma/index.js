@@ -9,8 +9,8 @@ app.use(express.json());
 
 app.post("/signup", async (req, res) => {
     try {
-        await prisma.user.create({ data: req.body });
-        res.status(200).send({ message: "Signup successful" });
+        const user = await prisma.user.create({ data: req.body });
+        res.status(200).send({ message: "Signup successful", user }); // Return the user object
     } catch (e) {
         if (e.code === "P2002") {
             res.status(409).send({ message: "Email already exists" });

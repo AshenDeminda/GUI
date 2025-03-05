@@ -22,13 +22,21 @@ function SignUp({ onLogin }) {
     }
     
     console.log("Sign-Up form submitted");
-    const res = await fetch("http://localhost:3000/signup", {method: "POST", body:JSON.stringify({full_name, email, password}), headers:{"Content-Type":"application/json"}});
-    if (res.ok) {
-      onLogin();
-    }
-    if (res.status === 409) {
-      toast.error("User already exists");
+    const res = await fetch("http://localhost:3000/signup", {
+      method: "POST",
+      body: JSON.stringify({ full_name, email, password }),
+      headers: { "Content-Type": "application/json" },
+    });
 
+    if (res.ok) {
+      const data = await res.json();
+      localStorage.setItem("token", JSON.stringify(data)); // Store the token in localStorage
+      onLogin(); // Trigger any additional login behavior
+      navigate("/dashboard"); // Navigate to the dashboard
+    } else if (res.status === 409) {
+      toast.error("User already exists");
+    } else {
+      toast.error("An error occurred during sign-up");
     }
   };
 
