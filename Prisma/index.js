@@ -7,10 +7,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Signup endpoint
 app.post("/signup", async (req, res) => {
     try {
         const user = await prisma.user.create({ data: req.body });
-        res.status(200).send({ message: "Signup successful", user }); // Return the user object
+        res.status(200).send({ message: "Signup successful", user });
     } catch (e) {
         if (e.code === "P2002") {
             res.status(409).send({ message: "Email already exists" });
@@ -20,6 +21,7 @@ app.post("/signup", async (req, res) => {
     }
 });
 
+// Signin endpoint
 app.post("/signin", async (req, res) => {
     const { email, password } = req.body;
     try {
@@ -33,9 +35,9 @@ app.post("/signin", async (req, res) => {
     }
 });
 
+// Get user data endpoint
 app.get("/user", async (req, res) => {
     const token = req.headers.authorization?.split(" ")[1];
-    console.log(`token: ${token}`);
     if (!token) return res.status(401).send({ message: "Unauthorized" });
 
     try {
@@ -48,8 +50,8 @@ app.get("/user", async (req, res) => {
     }
 });
 
+// Update profile endpoint
 app.put("/settings/update-profile", async (req, res) => {
-    console.log(req.body);
     const { id, name, email, location, job, age } = req.body;
     try {
         const user = await prisma.user.update({
@@ -63,6 +65,7 @@ app.put("/settings/update-profile", async (req, res) => {
     }
 });
 
+// Change password endpoint
 app.put("/settings/change-password", async (req, res) => {
     const { id, currentPassword, newPassword } = req.body;
     try {
@@ -80,6 +83,7 @@ app.put("/settings/change-password", async (req, res) => {
     }
 });
 
+// Update currency endpoint
 app.put("/settings/update-currency", async (req, res) => {
     const { id, currency, currencyFormat } = req.body;
     try {
@@ -93,6 +97,7 @@ app.put("/settings/update-currency", async (req, res) => {
     }
 });
 
+// Delete account endpoint
 app.delete("/settings/delete-account", async (req, res) => {
     const { id, password } = req.body;
     try {
@@ -107,27 +112,34 @@ app.delete("/settings/delete-account", async (req, res) => {
     }
 });
 
-app.post("/transaction", async(req, res) => {
+// Add transaction endpoint
+app.post("/transaction", async (req, res) => {
     try {
         const transaction = await prisma.transaction.create({ data: req.body });
         res.status(200).send(transaction);
     } catch (error) {
-        console.log(error)
+        console.log(error);
         res.status(500).send({ message: "Failed to add transaction" });
     }
-})
+});
 
+// Get transactions endpoint
 app.get("/transaction", async (req, res) => {
-    let {user} = req.query;
-    user = Number(user);
-    if (isNaN(user)) {
-        res.status(400).send({mesasge: "invalid user id"});
+    const { user } = req.query;
+    const userId = Number(user);
+    if (isNaN(userId)) {
+        res.status(400).send({ message: "Invalid user ID" });
     } else {
-        const transactions = await prisma.transaction.findMany({where:{userId:user}})
-        res.json(transactions);
+        try {
+            const transactions = await prisma.transaction.findMany({ where: { userId } });
+            res.json(transactions);
+        } catch (error) {
+            res.status(500).send({ message: "Failed to fetch transactions" });
+        }
     }
-})
+});
 
+// Start the server
 app.listen(3000, () => {
     console.log("Server is running on http://localhost:3000");
 });
