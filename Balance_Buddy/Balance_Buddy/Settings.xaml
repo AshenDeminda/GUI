@@ -4,111 +4,150 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
-      d:DesignHeight="600" d:DesignWidth="900"
+      Height="600" Width="900"
       Title="Settings"
       Background="#F4F6F9">
 
-    <Grid Margin="20">
-        <!-- Two-column layout -->
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-        </Grid.ColumnDefinitions>
+    <ScrollViewer>
+        <Grid Margin="20">
+            <!-- Two-column layout -->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
 
-        <!-- Left Side: Profile Settings -->
-        <Border Background="White" CornerRadius="10" Padding="20" Grid.Column="0" Margin="5,10,5,128">
-            <StackPanel>
-                <TextBlock Text="Profile Settings" FontSize="20" FontWeight="Bold" Margin="0,0,0,20" Foreground="#2B2D42"/>
+            <!-- Left Side: Profile Settings -->
+            <Border Background="White" CornerRadius="10" Padding="20" Grid.Column="0" Margin="5,5,5,52">
+                <StackPanel>
+                    <TextBlock Text="Profile Settings" FontSize="20" FontWeight="Bold" Margin="0,0,0,20" Foreground="#2B2D42"/>
 
-                <!-- Name -->
-                <StackPanel Margin="0,0,0,10">
-                    <TextBlock Text="Name" FontWeight="Bold" />
-                    <TextBox x:Name="NameTextBox" Text="" Margin="0,5,0,0" />
+                    <!-- Name -->
+                    <StackPanel Margin="0,0,0,10">
+                        <TextBlock Text="Name" FontWeight="Bold" />
+                        <TextBox x:Name="NameTextBox" Text="" Margin="0,5,0,0" />
+                    </StackPanel>
+
+                    <!-- Email -->
+                    <StackPanel Margin="0,0,0,10">
+                        <TextBlock Text="Email" FontWeight="Bold" />
+                        <TextBox x:Name="EmailTextBox" Text="" Margin="0,5,0,0" />
+                    </StackPanel>
+
+                    <!-- Location -->
+                    <StackPanel Margin="0,0,0,10">
+                        <TextBlock Text="Location" FontWeight="Bold" />
+                        <TextBox x:Name="LocationTextBox" Text="" Margin="0,5,0,0" TextChanged="LocationTextBox_TextChanged" />
+                    </StackPanel>
+
+                    <!-- Job -->
+                    <StackPanel Margin="0,0,0,10">
+                        <TextBlock Text="Job" FontWeight="Bold" />
+                        <TextBox x:Name="JobTextBox" Margin="0,5,0,0" />
+                    </StackPanel>
+
+                    <!-- Age -->
+                    <StackPanel Margin="0,0,0,10">
+                        <TextBlock Text="Age" FontWeight="Bold" />
+                        <TextBox x:Name="AgeTextBox" Margin="0,5,0,0" />
+                    </StackPanel>
+
+                    <!-- Update Profile Button -->
+                    <Button Content="Update Profile" 
+                            Background="#2563EB" 
+                            Foreground="White" 
+                            Height="40" 
+                            HorizontalAlignment="Stretch" 
+                            Margin="0,20,0,0" 
+                            Click="UpdateProfile_Click"/>
                 </StackPanel>
+            </Border>
 
-                <!-- Email -->
-                <StackPanel Margin="0,0,0,10">
-                    <TextBlock Text="Email" FontWeight="Bold" />
-                    <TextBox x:Name="EmailTextBox" Text="" Margin="0,5,0,0" />
-                </StackPanel>
+            <!-- Right Side: Other Settings -->
+            <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                <!-- Change Password Section -->
+                <Border Background="White" CornerRadius="10" Padding="20" Margin="0,0,0,20">
+                    <StackPanel>
+                        <TextBlock Text="Change Password" FontSize="20" FontWeight="Bold" Margin="0,0,0,20" Foreground="#2B2D42"/>
 
-                <!-- Location -->
-                <StackPanel Margin="0,0,0,10">
-                    <TextBlock Text="Location" FontWeight="Bold" />
-                    <TextBox x:Name="LocationTextBox" Text="" Margin="0,5,0,0" TextChanged="LocationTextBox_TextChanged" />
-                </StackPanel>
+                        <!-- Current Password -->
+                        <StackPanel Margin="0,0,0,10">
+                            <TextBlock Text="Current Password" FontWeight="Bold" />
+                            <PasswordBox x:Name="CurrentPasswordBox" Margin="0,5,0,0" />
+                        </StackPanel>
 
-                <!-- Job -->
-                <StackPanel Margin="0,0,0,10">
-                    <TextBlock Text="Job" FontWeight="Bold" />
-                    <TextBox x:Name="JobTextBox" Margin="0,5,0,0" />
-                </StackPanel>
+                        <!-- New Password -->
+                        <StackPanel Margin="0,0,0,10">
+                            <TextBlock Text="New Password" FontWeight="Bold" />
+                            <PasswordBox x:Name="NewPasswordBox" Margin="0,5,0,0" />
+                        </StackPanel>
 
-                <!-- Age -->
-                <StackPanel Margin="0,0,0,10">
-                    <TextBlock Text="Age" FontWeight="Bold" />
-                    <TextBox x:Name="AgeTextBox" Margin="0,5,0,0" />
-                </StackPanel>
+                        <!-- Confirm New Password -->
+                        <StackPanel Margin="0,0,0,10">
+                            <TextBlock Text="Confirm New Password" FontWeight="Bold" />
+                            <PasswordBox x:Name="ConfirmNewPasswordBox" Margin="0,5,0,0" />
+                        </StackPanel>
 
-                <!-- Update Profile Button -->
-                <Button Content="Update Profile" Background="#2563EB" Foreground="White" Height="40" HorizontalAlignment="Stretch" Margin="0,20,0,0" />
+                        <!-- Change Password Button -->
+                        <Button Content="Change Password" 
+                                Background="#2563EB" 
+                                Foreground="White" 
+                                Height="40" 
+                                HorizontalAlignment="Stretch" 
+                                Margin="0,20,0,0" 
+                                Click="ChangePassword_Click"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Additional Settings Section (Optional) -->
+                <Border Background="White" CornerRadius="10" Padding="20" Height="196">
+                    <StackPanel>
+                        <TextBlock Text="Additional Settings" FontSize="20" FontWeight="Bold" Margin="0,0,0,20" Foreground="#2B2D42"/>
+
+                        <!-- Notification Preferences -->
+                        <StackPanel Margin="0,0,0,10">
+                            <TextBlock Text="Notification Preferences" FontWeight="Bold" />
+                            <CheckBox Content="Email Notifications" Margin="0,5,0,0" />
+                            <CheckBox Content="Push Notifications" Margin="0,5,0,0" />
+                        </StackPanel>
+
+                        <!-- Theme -->
+                        <StackPanel Margin="0,0,0,10">
+                            <TextBlock Text="Theme" FontWeight="Bold" />
+                            <ComboBox Margin="0,5,0,0">
+                                <ComboBoxItem IsSelected="True">Light</ComboBoxItem>
+                                <ComboBoxItem>Dark</ComboBoxItem>
+                            </ComboBox>
+                        </StackPanel>
+
+                        <!-- Currency Settings -->
+                        <StackPanel Margin="0,0,0,10">
+                            <TextBlock Text="Currency" FontWeight="Bold" />
+                            <ComboBox x:Name="CurrencyComboBox" Margin="0,5,0,0">
+                                <ComboBoxItem>USD</ComboBoxItem>
+                                <ComboBoxItem>EUR</ComboBoxItem>
+                            </ComboBox>
+                        </StackPanel>
+
+                        <!-- Currency Format -->
+                        <StackPanel Margin="0,0,0,10">
+                            <TextBlock Text="Currency Format" FontWeight="Bold" />
+                            <ComboBox x:Name="CurrencyFormatComboBox" Margin="0,5,0,0">
+                                <ComboBoxItem>$</ComboBoxItem>
+                                <ComboBoxItem>€</ComboBoxItem>
+                            </ComboBox>
+                        </StackPanel>
+
+                        <!-- Update Currency Button -->
+                        <Button Content="Update Currency" 
+                                Background="#2563EB" 
+                                Foreground="White" 
+                                Height="40" 
+                                HorizontalAlignment="Stretch" 
+                                Margin="0,20,0,0" 
+                                Click="UpdateCurrency_Click"/>
+                    </StackPanel>
+                </Border>
             </StackPanel>
-        </Border>
-
-        <!-- Right Side: Other Settings -->
-        <StackPanel Grid.Column="1" Margin="10,0,0,0">
-            <!-- Change Password Section -->
-            <Border Background="White" CornerRadius="10" Padding="20" Margin="0,0,0,20">
-                <StackPanel>
-                    <TextBlock Text="Change Password" FontSize="20" FontWeight="Bold" Margin="0,0,0,20" Foreground="#2B2D42"/>
-
-                    <!-- Current Password -->
-                    <StackPanel Margin="0,0,0,10">
-                        <TextBlock Text="Current Password" FontWeight="Bold" />
-                        <PasswordBox x:Name="CurrentPasswordBox" Margin="0,5,0,0" />
-                    </StackPanel>
-
-                    <!-- New Password -->
-                    <StackPanel Margin="0,0,0,10">
-                        <TextBlock Text="New Password" FontWeight="Bold" />
-                        <PasswordBox x:Name="NewPasswordBox" Margin="0,5,0,0" />
-                    </StackPanel>
-
-                    <!-- Confirm New Password -->
-                    <StackPanel Margin="0,0,0,10">
-                        <TextBlock Text="Confirm New Password" FontWeight="Bold" />
-                        <PasswordBox x:Name="ConfirmPasswordBox" Margin="0,5,0,0" />
-                    </StackPanel>
-
-                    <!-- Change Password Button -->
-                    <Button Content="Change Password" Background="#2563EB" Foreground="White" Height="40" HorizontalAlignment="Stretch" Margin="0,20,0,0" />
-                </StackPanel>
-            </Border>
-
-            <!-- Currency Settings Section -->
-            <Border Background="White" CornerRadius="10" Padding="20">
-                <StackPanel>
-                    <TextBlock Text="Currency Settings" FontSize="20" FontWeight="Bold" Margin="0,0,0,20" Foreground="#2B2D42"/>
-
-                    <!-- Default Currency -->
-                    <StackPanel Margin="0,0,0,10">
-                        <TextBlock Text="Default Currency" FontWeight="Bold" />
-                        <ComboBox x:Name="CurrencyComboBox" Margin="0,5,0,0">
-                            <ComboBoxItem Content="USD" IsSelected="True" />
-                            <ComboBoxItem Content="LKR" />
-                        </ComboBox>
-                    </StackPanel>
-
-                    <!-- Currency Formatting -->
-                    <StackPanel Margin="0,0,0,10">
-                        <TextBlock Text="Currency Formatting" FontWeight="Bold" />
-                        <TextBox x:Name="CurrencyFormattingTextBox" Margin="0,5,0,0" />
-                    </StackPanel>
-
-                    <!-- Update Currency Button -->
-                    <Button Content="Update Currency" Background="#2563EB" Foreground="White" Height="40" HorizontalAlignment="Stretch" Margin="0,20,0,0" />
-                </StackPanel>
-            </Border>
-        </StackPanel>
-    </Grid>
+        </Grid>
+    </ScrollViewer>
 </Page>

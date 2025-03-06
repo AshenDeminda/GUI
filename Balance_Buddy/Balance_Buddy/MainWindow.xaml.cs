@@ -12,16 +12,13 @@ using System.Windows.Shapes;
 
 namespace Balance_Buddy
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
+        public int UserId { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
-
-            // Start with login page
             MainFrame.Navigate(new Login(this));
         }
 
@@ -32,12 +29,12 @@ namespace Balance_Buddy
 
         public void NavigateDashboard_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new Dashboard());
+            MainFrame.Navigate(new Dashboard(this));
         }
 
         public void NavigateAddRecord_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new AddRecord());
+            MainFrame.Navigate(new AddRecord(this));
         }
 
         public void NavigateReports_Click(object sender, RoutedEventArgs e)
@@ -47,7 +44,12 @@ namespace Balance_Buddy
 
         public void NavigateSettings_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new Settings());
+            MainFrame.Navigate(new Settings(this));
+        }
+
+        public void NavigateSignup_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new Signup(this));
         }
     }
 }

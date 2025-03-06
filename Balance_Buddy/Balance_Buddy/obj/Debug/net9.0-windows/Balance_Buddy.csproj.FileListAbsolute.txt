@@ -37,3 +37,7 @@ C:\Users\ASUS\Documents\GitHub\GUI\Balance_Buddy\Balance_Buddy\obj\Debug\net9.0-
 C:\Users\ASUS\Documents\GitHub\GUI\Balance_Buddy\Balance_Buddy\obj\Debug\net9.0-windows\App.baml
 C:\Users\ASUS\Documents\GitHub\GUI\Balance_Buddy\Balance_Buddy\obj\Debug\net9.0-windows\Login.baml
 C:\Users\ASUS\Documents\GitHub\GUI\Balance_Buddy\Balance_Buddy\obj\Debug\net9.0-windows\Login.g.cs
+C:\Users\ASUS\Documents\GitHub\GUI\Balance_Buddy\Balance_Buddy\bin\Debug\net9.0-windows\Newtonsoft.Json.dll
+C:\Users\ASUS\Documents\GitHub\GUI\Balance_Buddy\Balance_Buddy\bin\Debug\net9.0-windows\System.Net.Http.Json.dll
+C:\Users\ASUS\Documents\GitHub\GUI\Balance_Buddy\Balance_Buddy\obj\Debug\net9.0-windows\Signup.baml
+C:\Users\ASUS\Documents\GitHub\GUI\Balance_Buddy\Balance_Buddy\obj\Debug\net9.0-windows\Signup.g.cs

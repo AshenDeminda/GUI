@@ -1,23 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Newtonsoft.Json;
 
 namespace Balance_Buddy
 {
     public partial class Login : Page
     {
         private MainWindow _mainWindow;
+        private static readonly HttpClient client = new HttpClient();
 
         public Login(MainWindow mainWindow)
         {
@@ -25,31 +19,51 @@ namespace Balance_Buddy
             _mainWindow = mainWindow;
         }
 
-        private void Login_Click(object sender, RoutedEventArgs e)
+        private async void Login_Click(object sender, RoutedEventArgs e)
         {
             string email = EmailTextBox.Text;
             string password = PasswordBox.Password;
 
-            // Here you would typically validate credentials against a database or service
-            // For this example, we'll use a simple hardcoded credential check
-            if (email == "user@example.com" && password == "password123")
+            var loginData = new
             {
-                // Show navigation bar
-                _mainWindow.ShowNavigationBar();
+                email = email,
+                password = password
+            };
 
-                // Navigate to Dashboard
-                _mainWindow.MainFrame.Navigate(new Dashboard());
-            }
-            else
+            var json = JsonConvert.SerializeObject(loginData);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            try
             {
-                MessageBox.Show("Invalid email or password", "Login Failed", MessageBoxButton.OK, MessageBoxImage.Error);
+                HttpResponseMessage response = await client.PostAsync("http://localhost:3000/signin", content);
+                if (response.IsSuccessStatusCode)
+                {
+                    string responseBody = await response.Content.ReadAsStringAsync();
+                    var result = JsonConvert.DeserializeObject<dynamic>(responseBody);
+
+                    // Store the user ID in the main window
+                    _mainWindow.UserId = result.user.id;
+
+                    // Show navigation bar
+                    _mainWindow.ShowNavigationBar();
+
+                    // Navigate to Dashboard
+                    _mainWindow.MainFrame.Navigate(new Dashboard(_mainWindow));
+                }
+                else
+                {
+                    MessageBox.Show("Invalid email or password", "Login Failed", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         private void Register_Click(object sender, MouseButtonEventArgs e)
         {
-            // Implement registration logic or open registration window
-            MessageBox.Show("Registration feature not implemented", "Register", MessageBoxButton.OK, MessageBoxImage.Information);
+            _mainWindow.MainFrame.Navigate(new Signup(_mainWindow));
         }
     }
 }

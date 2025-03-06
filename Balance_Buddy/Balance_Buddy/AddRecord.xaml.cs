@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,17 +13,65 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Newtonsoft.Json;
 
 namespace Balance_Buddy
 {
-    /// <summary>
-    /// Interaction logic for AddRecord.xaml
-    /// </summary>
     public partial class AddRecord : Page
     {
-        public AddRecord()
+        private static readonly HttpClient client = new HttpClient();
+        private int userId;
+        private MainWindow _mainWindow;
+
+        public AddRecord(MainWindow mainWindow)
         {
             InitializeComponent();
+            _mainWindow = mainWindow;
+            userId = _mainWindow.UserId;
+            LoadInitialData();
+        }
+
+        private async void LoadInitialData()
+        {
+            try
+            {
+                await LoadFinancialSummary();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to load financial data: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private async Task LoadFinancialSummary()
+        {
+            HttpResponseMessage response = await client.GetAsync($"http://localhost:3000/transaction?user={userId}");
+            if (response.IsSuccessStatusCode)
+            {
+                string responseBody = await response.Content.ReadAsStringAsync();
+                var transactions = JsonConvert.DeserializeObject<dynamic[]>(responseBody);
+
+                decimal totalIncome = 0;
+                decimal totalExpense = 0;
+
+                foreach (var transaction in transactions)
+                {
+                    if (transaction.type.ToString().ToLower() == "income")
+                        totalIncome += (decimal)transaction.amount;
+                    else if (transaction.type.ToString().ToLower() == "expense")
+                        totalExpense += (decimal)transaction.amount;
+                }
+
+                decimal netBalance = totalIncome - totalExpense;
+
+                TotalIncomeText.Text = $"${totalIncome:F2}";
+                TotalExpenseText.Text = $"${totalExpense:F2}";
+                NetBalanceText.Text = $"${netBalance:F2}";
+            }
+            else
+            {
+                throw new Exception($"Failed to fetch transactions: {response.StatusCode}");
+            }
         }
 
         private void TransactionType_Checked(object sender, RoutedEventArgs e)
@@ -47,41 +96,67 @@ namespace Balance_Buddy
             CategoryDropdown.IsEnabled = true;
         }
 
-        private void AddTransaction_Click(object sender, RoutedEventArgs e)
+        private async void AddTransaction_Click(object sender, RoutedEventArgs e)
         {
-            // Fetch entered values
-            string transactionType = IncomeRadio.IsChecked == true ? "Income" : "Expense";
-            string category = CategoryDropdown.SelectedItem as string ?? "N/A";
-            string description = DescriptionBox.Text;
-            if (decimal.TryParse(AmountBox.Text, out decimal amount))
+            try
             {
-                // Update financial summary
-                if (transactionType == "Income")
+                if (CategoryDropdown.SelectedItem == null)
                 {
-                    decimal totalIncome = decimal.Parse(TotalIncomeText.Text.TrimStart('$'));
-                    totalIncome += amount;
-                    TotalIncomeText.Text = $"${totalIncome:F2}";
+                    MessageBox.Show("Please select a category", "Input Required", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                if (string.IsNullOrWhiteSpace(DescriptionBox.Text))
+                {
+                    MessageBox.Show("Please enter a description", "Input Required", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                if (!decimal.TryParse(AmountBox.Text, out decimal amount) || amount <= 0)
+                {
+                    MessageBox.Show("Please enter a valid amount (greater than zero)", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                string transactionType = IncomeRadio.IsChecked == true ? "income" : "expense";
+                string selectedCategory = CategoryDropdown.SelectedItem.ToString();
+                string category = selectedCategory.Split(' ')[0].ToLower();
+
+                var transactionData = new
+                {
+                    type = transactionType,
+                    category = category,
+                    description = DescriptionBox.Text,
+                    amount = amount,
+                    userId = userId
+                };
+
+                string json = JsonConvert.SerializeObject(transactionData);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await client.PostAsync("http://localhost:3000/transaction", content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string responseBody = await response.Content.ReadAsStringAsync();
+                    var result = JsonConvert.DeserializeObject<dynamic>(responseBody);
+
+                    MessageBox.Show("Transaction added successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                    await LoadFinancialSummary();
+
+                    DescriptionBox.Text = "";
+                    AmountBox.Text = "";
+                    CategoryDropdown.SelectedIndex = -1;
                 }
                 else
                 {
-                    decimal totalExpense = decimal.Parse(TotalExpenseText.Text.TrimStart('$'));
-                    totalExpense += amount;
-                    TotalExpenseText.Text = $"${totalExpense:F2}";
+                    MessageBox.Show($"Failed to add transaction: {response.StatusCode}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-
-                // Update net balance
-                decimal netBalance = decimal.Parse(TotalIncomeText.Text.TrimStart('$')) -
-                                     decimal.Parse(TotalExpenseText.Text.TrimStart('$'));
-                NetBalanceText.Text = $"${netBalance:F2}";
-
-                // Clear fields
-                DescriptionBox.Text = "";
-                AmountBox.Text = "";
-                CategoryDropdown.SelectedIndex = -1;
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Please enter a valid amount.", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

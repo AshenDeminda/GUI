@@ -3,9 +3,8 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Balance_Buddy"
       mc:Ignorable="d" 
-      d:DesignHeight="600" d:DesignWidth="900"
+      Height="600" Width="900"
       Title="Dashboard"
       Background="#F4F6F9">
 
@@ -22,13 +21,21 @@
                 <!-- User Info -->
                 <StackPanel VerticalAlignment="Top">
                     <!-- Circular user picture -->
-                    <Ellipse Width="80" Height="80" Fill="#FFFFFF" HorizontalAlignment="Center">
-                        <Ellipse.Stroke>
-                            <SolidColorBrush Color="#007BFF" />
-                        </Ellipse.Stroke>
-                    </Ellipse>
-                    <TextBlock Text="John Doe" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Margin="0, 20, 0, 10" Foreground="#FFFFFF"/>
-                    <TextBlock Text="Email: johndoe@example.com" FontSize="14" HorizontalAlignment="Center" Foreground="#FFFFFF"/>
+              
+                        <Ellipse Width="80" Height="80" HorizontalAlignment="Center">
+                            <Ellipse.Fill>
+                                <ImageBrush ImageSource="C:\Users\ASUS\Documents\GitHub\GUI\expense_tracker\public\ProfilPic.jpg"/>
+                            </Ellipse.Fill>
+                            <Ellipse.Stroke>
+                                <SolidColorBrush Color="#007BFF" />
+                            </Ellipse.Stroke>
+                        </Ellipse>
+          
+                    <TextBlock x:Name="UserNameText" Text="John Doe" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Margin="0, 20, 0, 10" Foreground="#FFFFFF"/>
+                    <TextBlock x:Name="UserEmailText" Text="Email: johndoe@example.com" FontSize="14" HorizontalAlignment="Center" Foreground="#FFFFFF"/>
+                    <TextBlock x:Name="UserLocationText" Text="Location: Not set" FontSize="14" HorizontalAlignment="Center" Foreground="#FFFFFF"/>
+                    <TextBlock x:Name="UserJobText" Text="Job: Not set" FontSize="14" HorizontalAlignment="Center" Foreground="#FFFFFF"/>
+                    <TextBlock x:Name="UserAgeText" Text="Age: Not set" FontSize="14" HorizontalAlignment="Center" Foreground="#FFFFFF"/>
                 </StackPanel>
             </Border>
         </StackPanel>
@@ -37,25 +44,41 @@
         <StackPanel Grid.Column="1" Margin="20" VerticalAlignment="Top" HorizontalAlignment="Left">
             <StackPanel Margin="0, 0, 0, 20">
                 <TextBlock Text="Financial Overview" FontSize="24" FontWeight="Bold" Margin="0,0,0,20"/>
-                <Border Background="#F1F1F1" CornerRadius="10" Padding="20" Width="500" Height="208">
-                    <StackPanel>
-                        <!-- Monthly Income -->
-                        <StackPanel Margin="0, 0, 0, 10">
-                            <TextBlock Text="Monthly Income" FontSize="16" FontWeight="SemiBold"/>
-                            <TextBlock Text="$2,500.00" FontSize="20" Foreground="#007BFF"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Financial Summary -->
+                    <Border Background="#F1F1F1" CornerRadius="10" Padding="20" Grid.Column="0" Margin="0,0,10,0">
+                        <StackPanel>
+                            <!-- Monthly Income -->
+                            <StackPanel Margin="0, 0, 0, 10">
+                                <TextBlock Text="Monthly Income" FontSize="16" FontWeight="SemiBold"/>
+                                <TextBlock x:Name="TotalIncomeText" Text="$0" FontSize="20" Foreground="#007BFF"/>
+                            </StackPanel>
+                            <!-- Monthly Expenses -->
+                            <StackPanel Margin="0, 0, 0, 10">
+                                <TextBlock Text="Monthly Expenses" FontSize="16" FontWeight="SemiBold"/>
+                                <TextBlock x:Name="TotalExpensesText" Text="$0" FontSize="20" Foreground="#FF5733"/>
+                            </StackPanel>
+                            <!-- Total Balance -->
+                            <StackPanel Margin="0, 0, 0, 10">
+                                <TextBlock Text="Total Balance" FontSize="16" FontWeight="SemiBold"/>
+                                <TextBlock x:Name="NetBalanceText" Text="$0" FontSize="20" Foreground="#28A745"/>
+                            </StackPanel>
                         </StackPanel>
-                        <!-- Monthly Expenses -->
-                        <StackPanel Margin="0, 0, 0, 10">
-                            <TextBlock Text="Monthly Expenses" FontSize="16" FontWeight="SemiBold"/>
-                            <TextBlock Text="$1,750.00" FontSize="20" Foreground="#FF5733"/>
+                    </Border>
+
+                    <!-- Expenses Pie Chart -->
+                    <Border Background="#F1F1F1" CornerRadius="10" Padding="20" Grid.Column="1">
+                        <StackPanel>
+                            <TextBlock Text="Expense Breakdown" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,10"/>
+                            <Canvas x:Name="PieChartCanvas" Width="250" Height="250"/>
                         </StackPanel>
-                        <!-- Total Balance -->
-                        <StackPanel Margin="0, 0, 0, 10">
-                            <TextBlock Text="Total Balance" FontSize="16" FontWeight="SemiBold"/>
-                            <TextBlock Text="$3,250.00" FontSize="20" Foreground="#28A745"/>
-                        </StackPanel>
-                    </StackPanel>
-                </Border>
+                    </Border>
+                </Grid>
             </StackPanel>
         </StackPanel>
     </Grid>

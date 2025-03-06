@@ -19,6 +19,7 @@
                 <Button Content="Settings" Width="100" Height="40" Margin="10,10,0,10" 
                         Background="#4682B4" Foreground="White" FontWeight="Bold" BorderThickness="0"
                         Cursor="Hand" Click="NavigateSettings_Click"/>
+                
             </StackPanel>
 
             <!-- Main Frame -->
