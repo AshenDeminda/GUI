@@ -99,54 +99,6 @@
                 </Border>
 
                 <!-- Additional Settings Section (Optional) -->
-                <Border Background="White" CornerRadius="10" Padding="20" Height="196">
-                    <StackPanel>
-                        <TextBlock Text="Additional Settings" FontSize="20" FontWeight="Bold" Margin="0,0,0,20" Foreground="#2B2D42"/>
-
-                        <!-- Notification Preferences -->
-                        <StackPanel Margin="0,0,0,10">
-                            <TextBlock Text="Notification Preferences" FontWeight="Bold" />
-                            <CheckBox Content="Email Notifications" Margin="0,5,0,0" />
-                            <CheckBox Content="Push Notifications" Margin="0,5,0,0" />
-                        </StackPanel>
-
-                        <!-- Theme -->
-                        <StackPanel Margin="0,0,0,10">
-                            <TextBlock Text="Theme" FontWeight="Bold" />
-                            <ComboBox Margin="0,5,0,0">
-                                <ComboBoxItem IsSelected="True">Light</ComboBoxItem>
-                                <ComboBoxItem>Dark</ComboBoxItem>
-                            </ComboBox>
-                        </StackPanel>
-
-                        <!-- Currency Settings -->
-                        <StackPanel Margin="0,0,0,10">
-                            <TextBlock Text="Currency" FontWeight="Bold" />
-                            <ComboBox x:Name="CurrencyComboBox" Margin="0,5,0,0">
-                                <ComboBoxItem>USD</ComboBoxItem>
-                                <ComboBoxItem>EUR</ComboBoxItem>
-                            </ComboBox>
-                        </StackPanel>
-
-                        <!-- Currency Format -->
-                        <StackPanel Margin="0,0,0,10">
-                            <TextBlock Text="Currency Format" FontWeight="Bold" />
-                            <ComboBox x:Name="CurrencyFormatComboBox" Margin="0,5,0,0">
-                                <ComboBoxItem>$</ComboBoxItem>
-                                <ComboBoxItem>€</ComboBoxItem>
-                            </ComboBox>
-                        </StackPanel>
-
-                        <!-- Update Currency Button -->
-                        <Button Content="Update Currency" 
-                                Background="#2563EB" 
-                                Foreground="White" 
-                                Height="40" 
-                                HorizontalAlignment="Stretch" 
-                                Margin="0,20,0,0" 
-                                Click="UpdateCurrency_Click"/>
-                    </StackPanel>
-                </Border>
             </StackPanel>
         </Grid>
     </ScrollViewer>

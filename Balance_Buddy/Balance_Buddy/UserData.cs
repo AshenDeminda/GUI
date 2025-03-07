@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace Balance_Buddy
 {
@@ -14,7 +15,5 @@ namespace Balance_Buddy
         public string Location { get; set; }
         public string Job { get; set; }
         public int? Age { get; set; }
-        public string Currency { get; set; }
-        public string CurrencyFormat { get; set; }
     }
 }
